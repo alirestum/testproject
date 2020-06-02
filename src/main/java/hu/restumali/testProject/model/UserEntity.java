@@ -19,6 +19,7 @@ public class UserEntity implements Serializable {
 
     private String password;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(value = EnumType.STRING)
     private List<UserRoleType> roles;
 }
