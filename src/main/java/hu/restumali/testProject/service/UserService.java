@@ -21,21 +21,23 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserEntity findByUsername(String username) { return userRepository.findOneByUsername(username); }
-
-    public void registerNewUser(UserDTO newUser) {
-            UserEntity userEntity = new UserEntity();
-            userEntity.setPassword(passwordEncoder.encode(newUser.getPassword()));
-            userEntity.setUsername(newUser.getUsername());
-            userEntity.setRoles(List.of(UserRoleType.LoggedInUser));
-            userRepository.save(userEntity);
+    public UserEntity findByUsername(String username) {
+        return userRepository.findOneByUsername(username);
     }
 
-    public void save(UserEntity user){
+    public void registerNewUser(UserDTO newUser) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        userEntity.setUsername(newUser.getUsername());
+        userEntity.setRoles(List.of(UserRoleType.LoggedInUser));
+        userRepository.save(userEntity);
+    }
+
+    public void save(UserEntity user) {
         userRepository.save(user);
     }
 
-    public boolean usernameExists(String username){
+    public boolean usernameExists(String username) {
         return userRepository.findOneByUsername(username) != null;
     }
 }

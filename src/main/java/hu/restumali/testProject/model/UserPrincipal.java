@@ -13,7 +13,7 @@ public class UserPrincipal implements UserDetails, Serializable {
 
     private UserEntity user;
 
-    public UserPrincipal(UserEntity user){
+    public UserPrincipal(UserEntity user) {
         this.user = user;
     }
 

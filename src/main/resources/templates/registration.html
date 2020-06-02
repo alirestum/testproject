@@ -23,7 +23,8 @@
                 </div>
                 <div class="form-group">
                     <label>Password confirmation</label>
-                    <p class="alert alert-danger" th:each="err: ${#fields.errors('passwordConfirm')}" th:text="${err}"></p>
+                    <p class="alert alert-danger" th:each="err: ${#fields.errors('passwordConfirm')}"
+                       th:text="${err}"></p>
                     <input type="password" class="form-control" th:field="*{passwordConfirm}">
                 </div>
                 <button type="submit" class="btn btn-primary">Register</button>

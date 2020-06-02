@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
+/**
+ * When h2 db profile is active this class populates the in memory db with the data specified in the project description.
+ */
 @Component
 @Profile("db-h2")
 public class H2DbConfig {
@@ -23,7 +26,7 @@ public class H2DbConfig {
     UserService userService;
 
     @PostConstruct
-    public void loadDataIntoDB(){
+    public void loadDataIntoDB() {
         logger.warn("Loading data into database, please wait until the task finishes!");
 
         UserDTO user1 = new UserDTO("User 1", "12345");

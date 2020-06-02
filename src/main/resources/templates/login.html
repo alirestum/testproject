@@ -6,9 +6,9 @@
     <script th:inline="javascript">
         if ([[${captchaRequired}]]) {
             document.addEventListener('DOMContentLoaded', () => {
-                document.getElementById('loginForm').addEventListener('submit', (event) =>{
+                document.getElementById('loginForm').addEventListener('submit', (event) => {
                     let response = grecaptcha.getResponse();
-                    if (response.length === 0){
+                    if (response.length === 0) {
                         document.getElementById('captchaAlert')
                             .classList.remove('d-none');
                         event.preventDefault();
@@ -37,7 +37,8 @@
                     <input type="password" name="password" class="form-control" placeholder="Password">
                 </div>
                 <div class="form-group" th:if="${captchaRequired} == true">
-                    <div id="captchaAlert" class="alert alert-danger d-none">Please verify, that you are not a robot!</div>
+                    <div id="captchaAlert" class="alert alert-danger d-none">Please verify, that you are not a robot!
+                    </div>
                     <div id="captcha" class="g-recaptcha" th:attr="data-sitekey=${sitekey}"></div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

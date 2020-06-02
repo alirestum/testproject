@@ -21,7 +21,7 @@ If you choose the postgre setting then the application will use a PostgreSQL dat
 Azure cloud.
 
 If you choose h2 setting, then the application will use an in-memory DB instance, which is automatically populated 
-during the startup process. Watch for this message:
+during the startup process. This is the faster option. Watch for this message:
 
 `2020-06-02 23:17:44.253   h.r.testProject.config.H2DbConfig        : Test data loaded into DB!`
 
@@ -31,6 +31,10 @@ Navigate to the root directory of the project. Run with this command:
 `./mvnw spring-boot:run`
 
 After startup the applictaion will be available at `localhost:3000`
+
+#### Tests
+If you run the tests, then make sure that no profile has been set as active in __application.properties__ at
+`spring.profiles.active=`
 
 ## Project specific informations
 

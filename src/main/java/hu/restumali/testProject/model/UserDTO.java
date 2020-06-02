@@ -5,6 +5,9 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+/**
+ * User object for the registration form.
+ */
 @Data
 public class UserDTO {
 
@@ -18,9 +21,10 @@ public class UserDTO {
     @NotEmpty(message = "Password confirmation is required!")
     private String passwordConfirm;
 
-    public UserDTO() {}
+    public UserDTO() {
+    }
 
-    public UserDTO(String username, String password){
+    public UserDTO(String username, String password) {
         this.username = username;
         this.password = password;
     }

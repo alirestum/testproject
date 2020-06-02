@@ -25,7 +25,7 @@ public class UserRepositoryIntegrationTest {
     private UserRepository userRepository;
 
     @Test
-    public void findByUsername(){
+    public void findByUsername() {
         UserEntity user = new UserEntity();
         user.setUsername("User 1");
         user.setPassword("12345");
