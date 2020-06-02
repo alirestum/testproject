@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{~/}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" th:if="${session.authorities.contains('ROLE_LoggedInUser') or session.authorities.contains('ROLE_Administrator')}">
+                    <a class="nav-link" th:href="@{~/user/}">Logged in user page</a>
+                </li>
+                <li class="nav-item" th:if="${session.authorities.contains('ROLE_ContentManager') or session.authorities.contains('ROLE_Administrator')}">
+                    <a class="nav-link" th:href="@{~/contentmanager}">Content Manager page</a>
+                </li>
+                <li class="nav-item" th:if="${session.authorities.contains('ROLE_Administrator')}">
+                    <a class="nav-link" th:href="@{~/admin}">Admin page</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <span class="font-weight-bold">Authorities: </span>
+                <span th:each="authority : ${session.authorities}" th:text="' ' + ${authority.replace('ROLE_', '')} + ' '"></span>
+                <span class="font-weight-bold">Last login time: </span>
+                <span th:text="${session.loginDate}"></span>
+            </span>
+        </div>
+    </nav>
+</th:block>
+</html>

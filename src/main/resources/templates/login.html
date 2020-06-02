@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="/fragments/headerFragment.html :: header(pageTitle='Login')">Header components</th:block>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script th:inline="javascript">
+        if ([[${captchaRequired}]]) {
+            document.addEventListener('DOMContentLoaded', () => {
+                document.getElementById('loginForm').addEventListener('submit', (event) =>{
+                    let response = grecaptcha.getResponse();
+                    if (response.length === 0){
+                        document.getElementById('captchaAlert')
+                            .classList.remove('d-none');
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1>Please sign in</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div th:if="${!param.isEmpty()}" class="alert alert-danger">Bad credentials</div>
+            <form id="loginForm" th:action="@{~/login}" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group" th:if="${captchaRequired} == true">
+                    <div id="captchaAlert" class="alert alert-danger d-none">Please verify, that you are not a robot!</div>
+                    <div id="captcha" class="g-recaptcha" th:attr="data-sitekey=${sitekey}"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
